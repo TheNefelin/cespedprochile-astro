@@ -1,0 +1,80 @@
+---
+import { Image } from "astro:assets"
+import { getImage } from "astro:assets";
+
+import imgBackground from "../assets/images/main_background.jpg"
+import imgLogo from "../assets/images/main_logo.png"
+import imgPadel from "../assets/images/icon_padel.png"
+import imgFootball from "../assets/images/icon_football.png"
+import imgGarden from "../assets/images/icon_garden.png"
+
+const bg = await getImage({
+  src: imgBackground,
+  format: "jpg",
+});
+---
+
+<section 
+  class="hero min-h-screen"
+	style={`background-image: url(${bg.src});`}
+  >
+
+	<div class="absolute inset-0 bg-gradient-to-br from-gray-950/50 to-blue-950/50"></div>	
+
+	<div class="hero-content text-center text-white grid md:pt-0 pt-20">
+		<div class="m-auto w-36 h-36">
+			<Image src={imgLogo} alt="Logo CéspedPro" class="w-full h-full object-cover rounded-full" />
+		</div>
+
+		<div>
+			<h1 class="text-6xl font-bold">CéspedPro</h1>
+			<p class="py-6 text-2xl max-w-xl mx-auto">
+				Expertos en mantención de canchas de pádel,
+				fútbol sintético y jardines con pasto sintético
+			</p>
+						
+			<a
+				href="/contact"
+				class="btn btn-success btn-lg rounded-full text-white hover:scale-105 transition-transform"
+			>
+				{"Solicita tu presupuesto GRATIS"}
+			</a>			
+		</div>
+
+		<div>
+			<div class="md:flex grid md:gap-16 gap-4 py-4 text-white">
+			
+				<!-- Item 1 -->
+				<div class="flex flex-col items-center">
+          <div class="mb-3">
+            <Image src={imgPadel} alt="pádel" width={56} height={56} />
+          </div>
+					<p class="text-lg font-medium text-center">
+						Canchas de pádel sintético
+					</p>
+				</div>
+			
+				<!-- Item 2 -->
+				<div class="flex flex-col items-center">
+          <div class="mb-3">
+            <Image src={imgFootball} alt="fútbol" width={56} height={56} />
+          </div>
+          <p class="text-lg font-medium text-center">
+						Canchas de fútbol sintético
+					</p>
+				</div>
+			
+				<!-- Item 3 -->
+				<div class="flex flex-col items-center">
+					<div class="mb-3">
+            <Image src={imgGarden} alt="pádel" width={56} height={56} />
+          </div>
+					<p class="text-lg font-medium text-center">
+						Jardines y patios sintéticos
+					</p>
+				</div>
+
+			</div>
+		</div>
+	</div>
+</section>

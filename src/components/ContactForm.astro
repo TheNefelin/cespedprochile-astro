@@ -1,0 +1,71 @@
+<form id="contact-form" class="bg-white rounded-3xl shadow-xl p-8 max-w-2xl mx-auto">
+  <h2 class="text-3xl font-bold text-gray-800 mb-6">Contáctanos</h2>
+  
+  <div class="form-control mb-4">
+    <label class="label">
+      <span class="label-text">Nombre</span>
+    </label>
+    <input type="text" name="name" required class="input input-bordered w-full" />
+  </div>
+
+  <div class="form-control mb-4">
+    <label class="label">
+      <span class="label-text">Email</span>
+    </label>
+    <input type="email" name="email" required class="input input-bordered w-full" />
+  </div>
+
+  <div class="form-control mb-4">
+    <label class="label">
+      <span class="label-text">Teléfono</span>
+    </label>
+    <input type="tel" name="phone" class="input input-bordered w-full" />
+  </div>
+
+  <div class="form-control mb-6">
+    <label class="label">
+      <span class="label-text">Mensaje</span>
+    </label>
+    <textarea name="message" required class="textarea textarea-bordered w-full h-32"></textarea>
+  </div>
+
+  <button type="submit" class="btn btn-success btn-block text-white">
+    Enviar mensaje
+  </button>
+
+  <div id="status-message" class="mt-4"></div>
+</form>
+
+<script>
+  const form = document.getElementById('contact-form') as HTMLFormElement;
+  const statusDiv = document.getElementById('status-message');
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    
+    const formData = new FormData(form);
+    const data = {
+      name: formData.get('name'),
+      email: formData.get('email'),
+      phone: formData.get('phone'),
+      message: formData.get('message')
+    };
+
+    try {
+      const response = await fetch('/api/send-email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+
+      if (response.ok) {
+        statusDiv!.innerHTML = '<div class="alert alert-success">¡Mensaje enviado! Te contactaremos pronto.</div>';
+        form.reset();
+      } else {
+        throw new Error('Error al enviar');
+      }
+    } catch (error) {
+      statusDiv!.innerHTML = '<div class="alert alert-error">Error al enviar. Debes completar todos los campos, Intenta de nuevo.</div>';
+    }
+  });
+</script>

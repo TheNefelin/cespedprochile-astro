@@ -1,0 +1,85 @@
+---
+import { Image } from "astro:assets"
+import imgBurger from "../assets/images/btn_burger.png"
+import imgTiktok from "../assets/images/social_tiktok.png"
+import imgWhatsapp from "../assets/images/social_whatsapp.png"
+import imgFacebook from "../assets/images/social_facebook.png"
+import imgInstagram from "../assets/images/social_instagram.png"
+---
+
+<div id="navbar" class="navbar transition-all duration-500 ease-out bg-gre text-white px-10 fixed z-10 top-0">
+  <div class="navbar-start hidden lg:flex">
+    <ul class="menu menu-horizontal">
+      <li><a href="/">Inicio</a></li>
+      <li><a href="/services">Servicios</a></li>
+      <li><a href="/gallery">Galería</a></li>
+      <li><a href="/about">Quiénes Somos</a></li>
+    </ul>
+  </div>
+  <div class="navbar-start">
+    <div class="dropdown">
+      <div tabindex="0" role="button" class="btn btn-md btn-circle border-0 shadow-none bg-black/50 p-2 lg:hidden">
+        <Image src={imgBurger} alt="menú"/>
+      </div>
+      <ul
+        tabindex="-1"
+        class="menu menu-sm dropdown-content bg-black/50 rounded-box z-1 mt-3 w-52 p-2 shadow">
+        <li><a href="/">Inicio</a></li>
+        <li><a href="/services">Servicios</a></li>
+        <li><a href="/gallery">Galería</a></li>
+        <li><a href="/about">Quiénes Somos</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="navbar-end flex gap-2">
+		<a 
+      href="https://www.francisco-dev.cl" target="_blank"
+      class="btn btn-md btn-circle border-0 shadow-none bg-black/50 hover:scale-110 transition-transform">
+			<Image class="p-2" src={imgTiktok} alt="tiktok">
+    </a>
+		<a 
+      href="https://www.francisco-dev.cl" target="_blank"
+      class="btn btn-md btn-circle border-0 shadow-none bg-black/50 hover:scale-110 transition-transform">
+			<Image class="p-2" src={imgWhatsapp} alt="whatsapp">
+		</a>
+		<a 
+      href="https://www.francisco-dev.cl" target="_blank"
+      class="btn btn-md btn-circle border-0 shadow-none bg-black/50 hover:scale-110 transition-transform">
+			<Image class="p-2" src={imgFacebook} alt="facebook">
+		</a>
+		<a 
+      href="https://www.francisco-dev.cl" target="_blank"
+      class="btn btn-md btn-circle border-0 shadow-none bg-black/50 hover:scale-110 transition-transform">
+			<Image class="p-2" src={imgInstagram} alt="instagram">
+		</a>
+	</div>
+</div>
+
+<script>
+  const navbar = document.getElementById('navbar');
+
+  const onScroll = () => {
+    if (window.scrollY > 10) {
+      navbar?.classList.remove(
+        'bg-transparent'
+      );
+      navbar?.classList.add(
+        'bg-green-600/40',
+        'backdrop-blur-md',
+        'shadow-lg'
+      );
+    } else {
+      navbar?.classList.remove(
+        'bg-green-600/40',
+        'backdrop-blur-md',
+        'shadow-lg'
+      );
+      navbar?.classList.add(
+        'bg-transparent'
+      );
+    }
+  };
+
+  window.addEventListener('scroll', onScroll);
+</script>

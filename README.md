@@ -1,5 +1,63 @@
 # Astro Starter Kit: Basics
 
+## Dependencies
+### Vercel
+> [Astro - Vercel](https://docs.astro.build/en/guides/integrations-guide/vercel/)
+```sh
+npm install @astrojs/vercel
+```
+- astro.config.mjs
+```mjs
+import { defineConfig } from 'astro/config';
+import vercel from '@astrojs/vercel';
+
+export default defineConfig({
+  output: 'server',
+	adapter: vercel(),
+});
+```
+
+### DaisyUI
+> [DaisyUI - Tailwind](https://daisyui.com) 
+```sh
+npm install tailwindcss@latest @tailwindcss/vite@latest daisyui@latest
+```
+- astro.config.mjs
+```mjs
+import { defineConfig } from "astro/config";
+import tailwindcss from "@tailwindcss/vite";
+
+export default defineConfig({
+  vite: {
+    plugins: [tailwindcss()],
+  },
+});
+```
+- src/assets/app.css
+```css
+@import "tailwindcss";
+@plugin "daisyui" {
+  themes: light --default
+};
+```
+- src/layouts/Layout.astro
+```astro
+---
+import "../assets/app.css";
+---
+```
+
+### Resend for emails
+> [Resend](https://resend.com/features/email-api)
+```sh
+npm install resend
+```
+
+
+---
+---
+---
+
 ```sh
 npm create astro@latest -- --template basics
 ```
