@@ -1,0 +1,108 @@
+---
+import GaleryCard from "../components/GaleryCard.astro";
+import Header from "../components/Header.astro";
+import RequestQuote from "../components/RequestQuote.astro";
+import PageLayout from "../layouts/PageLayout.astro";
+---
+
+<PageLayout>
+  <Header 
+    title={"Galería"}
+    subtitle={"Nuestros trabajos hablan por sí solos"}
+  />
+
+
+  <section class="px-4 py-16 space-y-16">
+    <!-- Filtros por Categoría -->
+    <div class="flex justify-center gap-4 mb-12">
+      <button class="btn btn-success text-white" data-show="all">Todos</button>
+      <button class="btn btn-outline btn-success" data-show="padel">Pádel</button>
+      <button class="btn btn-outline btn-success" data-show="futbol">Fútbol</button>
+      <button class="btn btn-outline btn-success" data-show="jardines">Jardines</button>
+      <button class="btn btn-outline btn-success" data-show="antes-despues">Antes / Después</button>
+    </div>
+
+    <!-- Grid de Galería -->
+    <div id="gallery-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div data-group="padel">
+        <GaleryCard title="Cancha de Pádel" subtitle="Mantención completa - Santiago" imageSrc="/images/galery_padel.png"/>
+      </div>
+
+      <div data-group="futbol">
+        <GaleryCard title="Cancha de Fútbol" subtitle="Limpieza profunda - Viña del Mar" imageSrc="/images/galery_futbol.png"/>
+      </div>
+
+      <div data-group="jardines">
+        <GaleryCard title="Jardín Residencial" subtitle="Desinfección y limpieza - Valparaíso" imageSrc="/images/galery_garden.png"/>      
+      </div>
+  
+      <div data-group="padel">
+        <GaleryCard title="Cancha Profesional" subtitle="Mantención mensual - La Serena" imageSrc="/images/galery_pro.png"/>        
+      </div>
+
+      <div data-group="futbol">
+        <GaleryCard title="Cancha Multiuso" subtitle="Restauración completa - Antofagasta" imageSrc="/images/galery_field.png"/>
+      </div>
+      
+      <div data-group="antes-despues">
+        <GaleryCard title="Antes y Después" subtitle="Recuperación de cancha - Concepción" imageSrc="/images/galery_befor_after.png"/>
+      </div>
+
+      <div data-group="jardines">
+        <GaleryCard title="Jardín Pet Friendly" subtitle="Desinfección especial - Rancagua" imageSrc="/images/galery_products.png"/>
+      </div>
+      
+      <div data-group="futbol">
+        <GaleryCard title="Club Deportivo" subtitle="Mantención integral - Temuco" imageSrc="/images/galery_club.png"/>
+      </div>
+
+      <div data-group="antes-despues">
+        <GaleryCard title="Transformación Total" subtitle="Jardín residencial - Iquique" imageSrc="/images/galery_transform.png"/>
+      </div>
+    </div>
+
+    <RequestQuote
+      title="¿Quieres que tu espacio luzca así?"
+      subtitle="Contáctanos y transforma tu cancha o jardín en un espacio impecable"
+      btnText="Solicita tu presupuesto GRATIS"
+    />   
+  </section>
+</PageLayout>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const filterButtons = document.querySelectorAll<HTMLButtonElement>('.btn-outline, .btn-success');
+    const buttons = document.querySelectorAll<HTMLElement>('[data-show]');
+    const items = document.querySelectorAll<HTMLElement>('#gallery-grid > div');
+
+    filterButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        filterButtons.forEach(btn => {
+          btn.classList.remove('btn-success', 'text-white');
+          btn.classList.add('btn-outline', 'btn-success');
+        });
+
+        button.classList.remove('btn-outline');
+        button.classList.add('btn-success', 'text-white');
+      });
+    });
+
+    buttons.forEach(button => {
+      button.addEventListener('click', () => {
+        const group = button.dataset.show;
+
+        items.forEach(item => item.classList.add('hidden'));
+
+        if (group === 'all') {
+          items.forEach(item => item.classList.remove('hidden'));
+        } else {
+          items.forEach(item => {
+            if (item.dataset.group === group) {
+              item.classList.remove('hidden');
+            }
+          });
+        }
+      });
+    });
+  });
+</script>
