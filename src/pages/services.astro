@@ -1,0 +1,77 @@
+---
+import Header from "../components/Header.astro";
+import PageLayout from "../layouts/PageLayout.astro";
+
+import data from "../data/services.json";
+import RequestQuote from "../components/RequestQuote.astro";
+---
+
+<PageLayout>
+    <Header 
+      title={data.title}
+      subtitle={data.subtitle}
+    />
+
+  <section class="px-4 py-16 space-y-16">
+    <!-- Introducción -->
+    <div class="text-center max-w-4xl mx-auto">
+      <p class="text-lg md:text-xl text-gray-700 leading-relaxed">
+        {data.content}
+      </p>
+      <div class="badge badge-lg badge-success text-white mt-6">
+        🐾 Pet Friendly
+      </div>
+    </div>
+
+    <!-- Servicios Principales -->
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {data.services.map(service => (
+        <div class="card bg-white shadow-xl hover:shadow-2xl transition-all">
+          <figure class="px-6 pt-6">
+            <div class={`w-full h-48 bg-gradient-to-br from-${service.color}-400 to-${service.color}-600 rounded-2xl flex items-center justify-center`}>
+              <img src={`/images/${service.img}`} class="w-24 h-24" alt="Fútbol">
+            </div>
+          </figure>
+          <div class="card-body">
+              <h2 class={`card-title text-${service.color}-800`}>{service.title}</h2>
+              <p class="text-gray-600">
+                {service.content}
+              </p>
+              <div class="card-actions justify-end mt-4">
+                <button class="btn btn-success btn-sm text-white">Más información</button>
+              </div>
+            </div>          
+        </div>
+      ))}
+    </div>
+
+    <!-- Importancia del Mantenimiento -->
+    <div class="bg-white rounded-3xl shadow-xl p-8 md:p-12 mt-16">
+      <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-8">
+        {data.maintenance.title}
+      </h2>
+      
+      <div class="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+        {data.maintenance.content.map(item => (
+          <div class="space-y-4">
+            <div class={`w-full h-40 bg-linear-to-br from-${item.color}-200 to-${item.color}-400 rounded-2xl flex items-center justify-center`}>
+              <span class="text-white text-lg font-semibold">
+                <img src={`/images/${item.img}`} class="max-h-40" alt={item.title}>
+              </span>
+            </div>
+            <h3 class={`text-2xl font-bold text-${item.color}-800`}>{item.title}</h3>
+            <p class="text-gray-700 leading-relaxed">
+              {item.description}
+            </p>
+          </div>  
+        ))}          
+      </div>
+    </div>
+
+    <RequestQuote
+      title="¿Necesitas mantener tu pasto sintético?"
+      subtitle="Contáctanos hoy y recibe una evaluación gratuita de tu espacio"
+      btnText="Solicita tu presupuesto GRATIS"
+    />      
+  </section>
+</PageLayout>
