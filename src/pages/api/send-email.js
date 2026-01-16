@@ -3,7 +3,7 @@ import { Resend } from 'resend';
 export const POST = async ({ request }) => {
   try {
     const data = await request.json(); 
-    const { name, email, message } = data;
+    const { name, phone, email, message } = data;
 
     // 1️⃣ Validación básica
     if (!name) {
@@ -47,17 +47,21 @@ export const POST = async ({ request }) => {
 
     // 4️⃣ Preparar Resend
     const API_KEY = import.meta.env.RESEND_API_KEY;
-    const EMAIL = import.meta.env.EMAIL;
+    const OWNER_EMAIL = import.meta.env.OWNER_EMAIL;
+    const RESEND_FROM_EMAIL = import.meta.env.RESEND_FROM_EMAIL;
+    const RESEND_NO_REPLY_EMAIL = import.meta.env.RESEND_NO_REPLY_EMAIL
+
     const resend = new Resend(API_KEY);        
 
     // 5️⃣ Enviar email al dueño del sitio
     const { error: errorToOwner } = await resend.emails.send({
-      from: 'Contacto <resend@cespedpro.cl>',
-      to: [EMAIL],
+       from: `Contacto <${RESEND_FROM_EMAIL}>`,
+      to: [OWNER_EMAIL],
       subject: `Nuevo mensaje de ${name}`,
       html: `
         <h1>Nuevo mensaje de contacto</h1>
         <p><strong>Nombre:</strong> ${name}</p>
+        <p><strong>Telefono:</strong> ${phone}</p>
         <p><strong>Email:</strong> ${email}</p>
         <p><strong>Mensaje:</strong></p>
         <p>${message}</p>
@@ -73,7 +77,7 @@ export const POST = async ({ request }) => {
 
     // 6️⃣ Enviar confirmación automática al usuario
     const { error: errorToUser } = await resend.emails.send({
-      from: 'Contacto <no-reply@cespedpro.cl>',
+      from: `CéspedPro <${RESEND_NO_REPLY_EMAIL}>`,
       to: [email],
       subject: 'Recibimos tu mensaje',
       html: `
