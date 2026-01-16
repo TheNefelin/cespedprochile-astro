@@ -36,36 +36,68 @@
   <div id="status-message" class="mt-4"></div>
 </form>
 
+<section id="form-loading" class="my-auto mx-auto text-center hidden">
+  <span class="loading loading-spinner loading-xl bg-green-600"></span>
+</section>
+
+<div id="form-success" role="alert" class="alert alert-success max-w-96 mx-auto text-white hidden">
+  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 shrink-0 stroke-current" fill="none" viewBox="0 0 24 24">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+  </svg>
+  <span>Tu mensaje ha sido enviado correctamente!!!</span>
+</div>
+
 <script>
   const form = document.getElementById('contact-form') as HTMLFormElement;
-  const statusDiv = document.getElementById('status-message');
+  const loading = document.getElementById('form-loading') as HTMLElement;;
+  const success = document.getElementById('form-success') as HTMLElement;;
+  const statusDiv = document.getElementById('status-message') as HTMLElement;;
 
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
     
-    const formData = new FormData(form);
-    const data = {
-      name: formData.get('name'),
-      email: formData.get('email'),
-      phone: formData.get('phone'),
-      message: formData.get('message')
-    };
-
-    try {
-      const response = await fetch('/api/send-email', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data)
-      });
-
-      if (response.ok) {
-        statusDiv!.innerHTML = '<div class="alert alert-success">¡Mensaje enviado! Te contactaremos pronto.</div>';
-        form.reset();
-      } else {
-        throw new Error('Error al enviar');
-      }
-    } catch (error) {
-      statusDiv!.innerHTML = '<div class="alert alert-error">Error al enviar. Debes completar todos los campos, Intenta de nuevo.</div>';
-    }
+  // Limpiar errores previos
+  statusDiv.innerHTML = '';
+  form.querySelectorAll('input, textarea').forEach(el => {
+    el.classList.remove('border-red-500', 'ring-1', 'ring-red-500');
   });
+
+  // Mostrar loading
+  form.classList.add('hidden');
+  loading.classList.remove('hidden');
+
+  const formData = new FormData(form);
+  const data = Object.fromEntries(formData.entries());
+
+  try{
+    const response = await fetch('/api/send-email', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    });
+
+    const result = await response.json();
+    loading.classList.add('hidden');
+
+    if (!response.ok) {
+      // Marcar campo con error si existe
+      if (result.field) {
+        const input = form.querySelector(`[name="${result.field}"]`);
+        input?.classList.add('border-red-500', 'ring-1', 'ring-red-500');
+      }
+
+      // Mostrar mensaje de error
+      statusDiv.innerHTML = `<div class="alert alert-error">${result.error}</div>`;
+      form.classList.remove('hidden'); // Volver a mostrar el formulario
+    } else {
+      // Mostrar éxito
+      success.classList.remove('hidden');
+      // No volvemos a mostrar el formulario
+    }    
+  } catch (err) {
+    loading.classList.add('hidden');
+    statusDiv.innerHTML = `<div class="alert alert-error">Error al enviar. Intenta nuevamente.</div>`;
+    form.classList.remove('hidden'); // Volver a mostrar el formulario
+  }
+});
 </script>
