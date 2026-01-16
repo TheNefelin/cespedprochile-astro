@@ -1,0 +1,54 @@
+{
+  "title": "Nuestros Servicios",
+  "subtitle": "Cuidamos tu pasto sintético como si fuera natural",
+  "content": "Ofrecemos soluciones que garantizan espacios verdes impecables, seguros y duraderos. Nuestro compromiso es cuidar cada detalle para que disfrutes áreas limpias y funcionales, reduciendo el consumo de agua y promoviendo prácticas sostenibles.",
+  "services": [
+    {
+      "img": "icon01.png",
+      "color": "blue",
+      "title": "Canchas de Pádel",
+      "content": "Lavado, desinfección y revisión del estado del pasto sintético para prolongar su vida útil y mantener el mejor rendimiento."
+    },
+    {
+      "img": "icon02.png",
+      "color": "green",
+      "title": "Canchas de Fútbol Sintéticas",
+      "content": "Limpieza profunda, cepillado, redistribución de arena y desinfección para garantizar un terreno seguro y en óptimas condiciones."
+    },
+    {
+      "img": "icon03.png",
+      "color": "blue",
+      "title": "Jardines de Pasto Sintético",
+      "content": "Limpieza, aspirado de residuos, control de olores y desinfección para mantener espacios impecables y libres de bacterias."
+    },
+    {
+      "img": "icon01.png",
+      "color": "green",
+      "title": "Limpieza y Desinfección Profesional",
+      "content": "Eliminamos polvo, suciedad y microorganismos, asegurando áreas higiénicas y seguras para personas y mascotas."
+    },
+    {
+      "img": "icon02.png",
+      "color": "blue",
+      "title": "Productos Especializados",
+      "content": "Uso de productos ecológicos para desinfección y mantenimiento, cuidando el medioambiente y la salud de tus espacios."
+    }
+  ],
+  "maintenance": {
+    "title": "Importancia del Mantenimiento del Pasto Sintético",
+    "content": [
+      {
+        "img": "icon01.png",
+        "color": "green",
+        "title": "Canchas Deportivas",
+        "description": "Una superficie en buen estado ayuda a prevenir lesiones en los deportistas, evitando irregularidades y acumulación de suciedad que puedan comprometer el rendimiento y la seguridad."
+      },
+      {
+        "img": "icon02.png",
+        "color": "blue",
+        "title": "Jardines",
+        "description": "La limpieza y desinfección reducen la presencia de bacterias y malos olores, creando espacios saludables para toda la familia y mascotas. El cuidado adecuado prolonga la vida útil del pasto."
+      }
+    ]
+  }
+}

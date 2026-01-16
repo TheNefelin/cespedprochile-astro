@@ -52,7 +52,7 @@ export const POST = async ({ request }) => {
 
     // 5️⃣ Enviar email al dueño del sitio
     const { error: errorToOwner } = await resend.emails.send({
-      from: 'Contacto <contacto@resend.dev>',
+      from: 'Contacto <resend@cespedpro.cl>',
       to: [EMAIL],
       subject: `Nuevo mensaje de ${name}`,
       html: `
@@ -73,7 +73,7 @@ export const POST = async ({ request }) => {
 
     // 6️⃣ Enviar confirmación automática al usuario
     const { error: errorToUser } = await resend.emails.send({
-      from: 'Contacto <onboarding@resend.dev>',
+      from: 'Contacto <no-reply@cespedpro.cl>',
       to: [email],
       subject: 'Recibimos tu mensaje',
       html: `

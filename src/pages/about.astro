@@ -1,0 +1,58 @@
+---
+import PageLayout from "../layouts/PageLayout.astro";
+import Header from "../components/Header.astro";
+import RequestQuote from "../components/RequestQuote.astro";
+
+import data from "../data/about.json";
+---
+
+<PageLayout>
+    <Header 
+      title={data.title}
+      subtitle={data.subtitle}
+    />
+
+  <section class="px-4 py-16 space-y-16">
+    <!-- Introducción -->
+      <section class="bg-white rounded-3xl shadow-xl p-8 md:p-12">
+        <div class="max-w-4xl mx-auto">
+          <p class="text-lg md:text-xl text-gray-700 leading-relaxed">
+            {data.content}
+          </p>
+        </div>
+      </section>
+
+      <!-- Valores / Eslogan -->
+      <section class="bg-linear-to-r from-green-600 to-blue-600 rounded-3xl shadow-xl p-8 md:p-12 text-white">
+        <h2 class="text-3xl md:text-4xl font-bold text-center mb-8">{data.values.title}</h2>
+        <div class="grid md:grid-cols-2 gap-4 max-w-4xl mx-auto">
+          {data.values.content.map(item => (
+            <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6">
+              <p class="text-lg font-medium">{item.description}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <!-- Misión, Visión, Expectativas -->
+      <section class="grid md:grid-cols-3 gap-6">
+        {data.goals.map(item => (
+          <div class="bg-white rounded-3xl shadow-xl p-8 hover:shadow-2xl transition-shadow">
+            <div class={`w-16 h-16 bg-${item.color}-100 rounded-full flex items-center justify-center mb-6`}>
+              <img src={`/images/${item.img}`} class="w-10 h-10" alt={item.title}>
+            </div>
+            <h2 class={`text-2xl font-bold text-${item.color}-800 mb-4`}>{item.title}</h2>
+            <p class="text-gray-700 leading-relaxed">
+              {item.content}
+            </p>
+          </div>          
+        ))}
+      </section>
+
+      <RequestQuote
+        title="¿Listo para transformar tu espacio?"
+        subtitle="Contáctanos"
+        btnText="Solicita tu presupuesto GRATIS"
+      />
+  </section>
+</PageLayout>

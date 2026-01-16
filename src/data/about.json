@@ -1,0 +1,34 @@
+{
+  "title": "Quiénes Somos",
+  "subtitle": "Especialistas en mantención de pasto sintético",
+  "content": "Somos una empresa especializada en la mantención y cuidado de pasto sintético, comprometida con la calidad, la durabilidad y la estética de tus espacios. Creemos en soluciones prácticas y sostenibles que aporten comodidad, belleza y respeto por el medioambiente, creando áreas seguras y amigables para las personas y sus mascotas.",
+  "values": {
+    "title": "Nuestros Valores",
+    "content": [
+      { "description": "✓ Mantenciones que cuidan tu espacio y el planeta" },
+      { "description": "✓ Pasto sintético, vida natural" },
+      { "description": "✓ Tu área verde siempre perfecta, sin gastar agua" },
+      { "description": "✓ Espacios verdes, mascotas felices" }
+    ]
+  },
+  "goals": [
+    {
+      "img": "icon_mision.png",
+      "color": "green",
+      "title": "Misión",
+      "content": "Brindar un servicio integral de mantención de pasto sintético, asegurando su óptimo estado y prolongando su vida útil. Nuestro compromiso es ofrecer espacios limpios, seguros y funcionales, contribuyendo al bienestar de nuestros clientes y al cuidado del entorno."
+    },
+    {
+      "img": "icon_vision.png",
+      "color": "blue",
+      "title": "Visión",
+      "content": "Ser la empresa líder en mantenciones de pasto sintético en la región, reconocida por su excelencia, innovación y responsabilidad ambiental, creando áreas verdes artificiales que mejoren la calidad de vida y fomenten la convivencia pet friendly."
+    },
+    {
+      "img": "icon_expect.png",
+      "color": "green",
+      "title": "Qué Esperamos",
+      "content": "Esperamos convertirnos en tu aliado estratégico para mantener tus espacios verdes impecables, reduciendo el consumo de agua y promoviendo soluciones sostenibles. Queremos que cada proyecto refleje nuestro compromiso con la calidad, la estética y el respeto por el medioambiente."
+    }
+  ]
+}
