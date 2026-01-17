@@ -1,9 +1,10 @@
 ---
 import Header from "../components/Header.astro";
 import PageLayout from "../layouts/PageLayout.astro";
+import RequestQuote from "../components/RequestQuote.astro";
+import ServiceCard from "../components/ServiceCard.astro";
 
 import data from "../data/services.json";
-import RequestQuote from "../components/RequestQuote.astro";
 
 const colorMap = {
   blue: {
@@ -39,34 +40,18 @@ const colorMap = {
       {data.services.map((service, index) => {
         const isEven = index % 2 === 0;
 
-        return (
-          <div class="card bg-white shadow-xl hover:shadow-2xl transition-all">
-            <figure class="px-6 pt-6">
-              <div class={`w-full h-48 bg-linear-to-br ${isEven ? "from-blue-400 to-blue-600" : "from-green-400 to-green-600"} rounded-2xl flex items-center justify-center`}>
-                <img src={`/images/${service.img}`} class="w-24 h-24" alt="Fútbol">
-              </div>
-            </figure>
-
-            <div class="card-body">
-              <h2 class={`card-title ${isEven ? "text-blue-800" : "text-green-800"}`}>{service.title}</h2>
-              <p class="text-gray-600">
-                {service.content}
-              </p>
-              <div class="card-actions justify-end mt-4">
-                <button class="btn btn-success btn-sm text-white">Más información</button>
-              </div>
-            </div>
-          </div>     
+        return(
+        <ServiceCard isEven={isEven} title={service.title} service={service.content} imageSrc={service.img}/>
         )
       })}
-    </div>
+    </div>   
 
     <!-- Importancia del Mantenimiento -->
     <div class="bg-white rounded-3xl shadow-xl p-8 md:p-12 mt-16">
       <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-8">
         {data.maintenance.title}
       </h2>
-      
+
       <div class="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
         {data.maintenance.content.map((item, index) => {
           const isEven = index % 2 === 0;
@@ -75,18 +60,18 @@ const colorMap = {
             <div class="space-y-4">
               <div class={`w-full h-40 rounded-2xl flex items-center justify-center`}>
                 <span class="text-white text-lg font-semibold">
-                  <img src={`/images/${item.img}`} class="max-h-40" alt={item.title}>
+                  <img src={`/images/${item.img}`} class="max-h-40" alt={item.title}/>
                 </span>
               </div>
               <h3 class={`text-2xl font-bold ${isEven ? "text-blue-800" : "text-green-800"}`}>{item.title}</h3>
               <p class="text-gray-700 leading-relaxed">
                 {item.description}
               </p>
-            </div>  
+            </div>
           )
-        })}          
+        })}
       </div>
-    </div>
+    </div>  
 
     <RequestQuote
       title="¿Necesitas mantener tu pasto sintético?"

@@ -1,0 +1,30 @@
+---
+import { boolean } from "astro:schema";
+
+const { 
+  isEven = boolean,
+  title = "Sin Imagen", 
+  service = "Sin Imagen", 
+  imageSrc
+} = Astro.props;
+
+const finalImage = imageSrc || "icon_image.png";
+---
+
+<div class="card bg-white shadow-xl hover:shadow-2xl transition-all">
+  <figure class="px-6 pt-6">
+    <div class={`w-full h-48 bg-linear-to-br ${isEven ? "from-blue-400 to-blue-600" : "from-green-400 to-green-600"} rounded-2xl flex items-center justify-center`}>
+      <img src={`/images/${finalImage}`} class="w-24 h-24" alt="Fútbol">
+    </div>
+  </figure>
+
+  <div class="card-body">
+    <h2 class={`card-title ${isEven ? "text-blue-800" : "text-green-800"}`}>{title}</h2>
+    <p class="text-gray-600">
+      {service}
+    </p>
+    <!-- <div class="card-actions justify-end mt-4">
+      <button class="btn btn-success btn-sm text-white">Más información</button>
+    </div> -->
+  </div>
+</div>
