@@ -40,12 +40,19 @@
   <span class="loading loading-spinner loading-xl bg-green-600"></span>
 </section>
 
-<div id="form-success" role="alert" class="alert alert-success max-w-96 mx-auto text-white hidden">
-  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 shrink-0 stroke-current" fill="none" viewBox="0 0 24 24">
-    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-  </svg>
-  <span>Tu mensaje ha sido enviado correctamente!!!</span>
-</div>
+<!-- hidden -->
+<section id="form-success" class="hidden">
+  <div role="alert" class="alert alert-success max-w-96 mx-auto text-white">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 shrink-0 stroke-current" fill="none" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+    </svg>
+    <span>Tu mensaje ha sido enviado correctamente!!!</span>
+  </div>
+
+  <div class="text-center my-4">
+    <a href="/" class="btn btn-secondary text-white" data-show="all">Volver al Inicio</a>
+  </div>
+</section>
 
 <script>
   const form = document.getElementById('contact-form') as HTMLFormElement;
